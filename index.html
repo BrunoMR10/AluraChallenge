@@ -32,6 +32,7 @@
             </div>
             <div class="after">
                 <p id="mensajeencriptado">Mensaje encriptado</p>
+                <input id="copiar" type="submit" value="copiar" class="copiar">
             </div>
         </div>
 
@@ -42,28 +43,96 @@
 
     <script>
 
-        function encriptar(){
-            //alert("La palabra a encriptar es: "+input.value);
-            before.style.display = "none";
-            after.style.visibility='visible';
+        function rutinaencriptar(){
+            if  (input.value == ""){
+                textonoencontrado();
+            }
+            else{
+                textoencontrado();
+                const muestraencriptado = document.getElementById('mensajeencriptado');
+                muestraencriptado.textContent = encriptatexto(input.value);
+                
+            
+            }
             
         }
-        function desencriptar(){
+        function rutinadesencriptar(){
+            if  (input.value == ""){
+                textonoencontrado();
+            }
+            else{
+                textoencontrado();
+                const muestraencriptado = document.getElementById('mensajeencriptado');
+                muestraencriptado.textContent = desencriptatexto(input.value);
+            }
+            
+        }
+        function textonoencontrado(){
             before.style.display = "initial";
             after.style.visibility='hidden';
         }
-        function copiar(){
+        function textoencontrado(){
+            before.style.display = "none";
+            after.style.visibility='visible';
+        }
+        function cuadrovacio(){
+            before.style.display = "none";
+            after.style.visibility='hidden';
+        }
+        function encriptatexto(texto){
+            let textoencriptado = new String(texto);
+            const chars = {
+              'a': 'ai',
+              'e': 'enter',
+              'i': 'imes',
+              'o': 'ober',
+              'u': 'ufat'
+             };
 
+            textoencriptado = textoencriptado.replace(/[aeiou]/g, m => chars[m]);
+            textoacopiar = textoencriptado;
+           
+            
+            
+            return textoencriptado;
+
+        }
+        function desencriptatexto(textoencriptado){
+            let texto= new String(textoencriptado);
+
+            const chars = {
+              'ai': 'a',
+              'enter': 'e',
+              'imes': 'i',
+              'ober': 'o',
+              'ufat': 'u'
+            };
+            textoencriptado = textoencriptado.replace(/\s|ai|enter|imes|ober|ufat/g, m => chars[m]);
+            textoencriptado = textoencriptado.replace(/undefined/g," ");
+            textoacopiar = textoencriptado;
+
+
+
+            return textoencriptado;
+
+        }
+        function copiar(){
+            const elementocopiado = document.getElementById('mensajeencriptado');
+            navigator.clipboard.writeText(textoacopiar);
+            alert(textoacopiar);
         }
         const before = document.getElementsByClassName('before')[0];
         const after = document.getElementsByClassName('after')[0];
-        var input = document.querySelector("textarea");
-        let encrip = document.getElementById("encriptar"); 
-        let desencrip = document.getElementById("desencriptar"); 
-        after.style.visibility = 'hidden';
+        const input = document.querySelector("textarea");
+        const encrip = document.getElementById("encriptar"); 
+        const desencrip = document.getElementById("desencriptar"); 
+        const copy = document.getElementById("copiar"); 
+        var textoacopiar="";
+        cuadrovacio();
         input.focus;
-        encrip.onclick = encriptar; // Agrega función onclick al elemento
-        desencrip.onclick = desencriptar;
+        encrip.onclick = rutinaencriptar; // Agrega función onclick al elemento
+        desencrip.onclick = rutinadesencriptar;
+        copy.onclick = copiar;
     </script>
 
 
