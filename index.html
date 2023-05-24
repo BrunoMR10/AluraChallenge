@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width">
         <title>Encriptador</title> 
+        <link rel="stylesheet" href="reset.css">
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
@@ -19,14 +20,19 @@
         <div class="cajatexto">
             <textarea placeholder="Ingrese el Texto Aqui"></textarea>
             <div class="Botones">
-                <input type="submit" value="Encriptar" class="encriptar">
-                <input type="submit" value="Desencriptar" class="desencriptar">
+                <input id="encriptar" type="submit" value="Encriptar" class="encriptar">
+                <input id="desencriptar" type="submit" value="Desencriptar" class="desencriptar">
             </div>
         </div>
         <div class ="display">
-            <h1><img src="Imagenes/Muñeco.png"></h1>
-            <h2>Ningun mensaje fue encontrado</h2>
-            <p>Ingrese el texto que desees encriptar o desencriptar.</p>
+            <div class = "before">
+                <h1 ><img src="Imagenes/Muñeco.png"></h1>
+                <h2>Ningun mensaje fue encontrado</h2>
+                <p>Ingrese el texto que desees encriptar o desencriptar.</p>
+            </div>
+            <div class="after">
+                <p id="mensajeencriptado">Mensaje encriptado</p>
+            </div>
         </div>
 
     </main>
@@ -36,6 +42,28 @@
 
     <script>
 
+        function encriptar(){
+            //alert("La palabra a encriptar es: "+input.value);
+            before.style.display = "none";
+            after.style.visibility='visible';
+            
+        }
+        function desencriptar(){
+            before.style.display = "initial";
+            after.style.visibility='hidden';
+        }
+        function copiar(){
+
+        }
+        const before = document.getElementsByClassName('before')[0];
+        const after = document.getElementsByClassName('after')[0];
+        var input = document.querySelector("textarea");
+        let encrip = document.getElementById("encriptar"); 
+        let desencrip = document.getElementById("desencriptar"); 
+        after.style.visibility = 'hidden';
+        input.focus;
+        encrip.onclick = encriptar; // Agrega función onclick al elemento
+        desencrip.onclick = desencriptar;
     </script>
 
 
