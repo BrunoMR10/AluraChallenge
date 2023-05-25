@@ -126,6 +126,15 @@ font-size:25px;
     border-radius: 24px;
     margin-top: 710px;
 }
+footer{
+    position: absolute;
+    margin-top: 900px;
+    background: black;
+    color: white;
+    width: 100%;
+    font-size: 20px;
+}
+
 
 
 
